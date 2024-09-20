@@ -1,0 +1,47 @@
+{
+    "projectName": "Commercial Project 1",
+    "projectSummaryParagraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "projectSummaryPoints": [
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet"
+    ],
+    "clientName": "Commercial Client",
+    "slug": "commericial-project-1",
+    "service": "commercial",
+    "industry": "education",
+    "location": "Fort Collins, CO",
+    "completionDate": "2024-07-01",
+    "members": ["matt-lutton"],
+    "featured": true,
+    "cardImageMobile": {
+        "image": "../../assets/images/commercial-project-1-SM.png",
+        "alt": "Commercial Project 1 Card Image Mobile"
+    },
+    "cardImageDesktop": {
+        "image": "../../assets/images/commercial-project-1.png",
+        "alt": "Commercial Project 1 Card Image Desktop"
+    },
+    "projectImagesMobile": [
+        {
+            "image": "../../assets/images/Home-Hero-SM.png",
+            "alt": "Commercial Project 1 Image Mobile 1"
+        },
+        {
+            "image": "../../assets/images/commercial-project-1-SM.png",
+            "alt": "Commercial Project 1 Image Desktop 1"
+        }
+    ],
+    "projectImagesDesktop": [
+        {
+            "image": "../../assets/images/home-hero.png",
+            "alt": "Commercial Project 1 Image Desktop 2"
+        },
+        {
+            "image": "../../assets/images/commercial-project-1.png",
+            "alt": "Commercial Project 1 Image Desktop 1"
+        }
+    ]
+}

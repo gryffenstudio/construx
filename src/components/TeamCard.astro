@@ -1,0 +1,27 @@
+---
+import CustomImage from './CustomImage.astro';
+
+interface Props {
+    teamMemberData: any;
+}
+
+const { teamMemberData } = Astro.props;
+---
+
+<a href={`/team/${teamMemberData.slug}`} class=`relative h-fit w-fit`>
+    <CustomImage
+        mobileImgUrl={teamMemberData.cardImageMobile.image}
+        desktopImgUrl={teamMemberData.cardImageDesktop.image}
+        imageSizes={[
+            [270, 236],
+            [270, 236],
+        ]}
+        alt={teamMemberData.cardImageMobile.alt}
+    />
+    <div
+        class='absolute -bottom-1 right-0 flex h-[33%] w-full flex-col items-center justify-center bg-white opacity-90'
+    >
+        <span class='text-xl capitalize'>{teamMemberData.name}</span>
+        <span class='capitalize'>{teamMemberData.role}</span>
+    </div>
+</a>

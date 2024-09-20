@@ -1,0 +1,70 @@
+---
+import Hero from '../../components/Hero.astro';
+import Layout from '../../layouts/Layout.astro';
+import heroImageSM from '../../assets/images/Home-Hero-SM.png';
+import heroImage from '../../assets/images/home-hero.png';
+import aboutUsSM from '../../assets/images/About-Us-Img-SM.png';
+import aboutUs from '../../assets/images/About-Us-Img.png';
+import CustomImage from '../../components/CustomImage.astro';
+import { YouTube } from 'astro-embed';
+import { getCollection } from 'astro:content';
+import TeamCard from '../../components/TeamCard.astro';
+
+const team = await getCollection('team');
+---
+
+<Layout title='About Us - Construx' description='Build with Construx' robots={false}>
+    <Hero
+        h1Text='about us'
+        description='Explore our successful projects'
+        heroImages={[heroImageSM, heroImage]}
+    />
+    <main>
+        <section class='container flex flex-col items-center py-16 lg:flex-row lg:justify-between'>
+            <div class='mb-8 lg:mb-0 lg:w-2/3 lg:place-self-start xl:w-1/2'>
+                <h2 class='mb-4 text-left'>our mission</h2>
+                <p class='capitalize leading-[30px] lg:pr-20'>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                    nostrud exercitation ullamco la Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim venia
+                </p>
+            </div>
+            <CustomImage
+                mobileImgUrl={aboutUsSM}
+                desktopImgUrl={aboutUs}
+                imageSizes={[
+                    [362, 315],
+                    [556, 483],
+                ]}
+                alt={`About Us Image`}
+            />
+        </section>
+        <section class='container pb-24'>
+            <h2 class='mb-4 text-left'>our story</h2>
+            <YouTube id='kKU89BP0Dsw' class='mb-8' posterQuality='max' title='Construx Story' />
+            <p class='capitalize leading-[30px]'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco la Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                venia
+            </p>
+        </section>
+        <section class='container pb-16'>
+            <h2 class='mb-4'>our team</h2>
+            <p class='mb-8 text-center capitalize leading-[30px]'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad
+            </p>
+            <div class='grid place-items-center gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4'>
+                {
+                    team.map((teamMember: { data: any }) => {
+                        return <TeamCard teamMemberData={teamMember.data} />;
+                    })
+                }
+            </div>
+        </section>
+    </main>
+</Layout>

@@ -1,0 +1,27 @@
+---
+import type { InferEntrySchema } from 'astro:content';
+import CustomImage from './CustomImage.astro';
+
+interface Props {
+    projectData: InferEntrySchema<'projects'>;
+}
+
+const { projectData } = Astro.props as Props;
+---
+
+<a
+    id={projectData.projectName}
+    href={`/portfolio/${projectData.slug}`}
+    class=`h-fit w-fit transform transition-all duration-500 ease-in-out project-card ${projectData.service} ${projectData.industry}`
+>
+    <CustomImage
+        mobileImgUrl={projectData.cardImageMobile.image}
+        desktopImgUrl={projectData.cardImageDesktop.image}
+        imageSizes={[
+            [327, 327],
+            [375, 375],
+        ]}
+        alt={projectData.cardImageMobile.alt}
+        imgClassList=''
+    />
+</a>

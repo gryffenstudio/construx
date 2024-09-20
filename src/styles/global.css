@@ -1,0 +1,216 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply text-5xl font-bold uppercase md:text-left;
+    }
+    h2 {
+        @apply text-center text-2xl font-bold capitalize leading-loose text-black;
+    }
+    h3 {
+        @apply text-lg font-bold capitalize text-black;
+    }
+    h4 {
+    }
+    ol {
+        @apply list-inside list-decimal marker:font-bold md:text-xl;
+    }
+    ul {
+        @apply list-inside list-disc space-y-2 marker:pl-6 marker:font-bold md:text-xl;
+    }
+    a {
+    }
+    button {
+        @apply touch-manipulation;
+    }
+    p {
+    }
+    p:empty {
+        @apply my-8;
+    }
+    p:empty + p:empty {
+        @apply my-16;
+    }
+    input {
+        @apply appearance-none rounded-lg px-2 py-2 text-lg outline-none focus:outline-none focus:ring-0;
+    }
+    textarea {
+        @apply resize-none appearance-none rounded-lg px-2 py-2 outline-none focus:outline-none focus:ring-0;
+    }
+    label {
+        @apply absolute start-0 top-4 z-10 ml-2 origin-[0] scale-75 transform text-sm duration-300;
+    }
+    select {
+        @apply w-full appearance-none rounded-lg px-2 py-2 outline-none;
+    }
+
+    article h2 {
+        @apply text-left leading-normal;
+    }
+
+    article ol,
+    ul {
+        @apply text-base;
+    }
+
+    lite-youtube {
+        max-width: 100% !important;
+    }
+
+    /* Target all classes containing 'swiper-custom-pagination' */
+    [class*='swiper-custom-pagination'] {
+        position: unset !important;
+        width: auto !important;
+    }
+
+    /* Customize the pagination bullets */
+    [class*='swiper-custom-pagination'] * {
+        height: 10px !important;
+        width: 10px !important;
+        background-color: black !important;
+    }
+
+    /* Customize the active pagination bullet */
+    [class*='swiper-custom-pagination'] [class*='active'] {
+        height: 12px !important;
+        width: 12px !important;
+        background-color: black !important;
+    }
+
+    .swiper-slide-prev,
+    .swiper-slide-next {
+        background-color: red !important;
+    }
+}
+
+@layer components {
+    .primary-btn {
+        @apply inline-flex h-12 items-center justify-center rounded-[10px] bg-brand-green-secondary px-8 py-3 hover:opacity-50;
+    }
+    .planning-section {
+        @apply relative left-5 mb-8 w-[90%] transition-opacity duration-300 ease-in-out lg:left-0 lg:mb-12 lg:w-[45%] lg:odd:left-[55%] lg:even:text-right;
+    }
+}
+
+@layer utilities {
+    .portfolio-dropdown {
+        @apply cursor-pointer appearance-none rounded-none border-b border-black bg-white pb-4 text-xl;
+    }
+    .left-to-right-text-color {
+        font-size: 64px;
+        font-weight: bold;
+        background: linear-gradient(to left, black 50%, red 50%);
+        background-size: 200% 100%;
+        background-position: right;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: background-position 0.5s ease-out;
+    }
+    .left-to-right-text-color:hover {
+        background-position: left;
+    }
+    .hamburger-toggle {
+        @apply [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 [&>div::before]:translate-y-0 [&>div::before]:rotate-45 [&>div]:h-0 [&>div]:bg-white;
+    }
+    .auto-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    }
+    @keyframes expand {
+        0% {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 100%;
+            bottom: 2.5rem;
+            right: 1.5rem;
+        }
+        100% {
+            width: 250vw;
+            height: 250dvh;
+            border-radius: 100%;
+            bottom: -100dvh;
+            right: -100vw;
+        }
+    }
+    @keyframes contract {
+        0% {
+            width: 250vw;
+            height: 250dvh;
+            border-radius: 100%;
+            bottom: -100dvh;
+            right: -100vw;
+        }
+        100% {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 100%;
+            bottom: 2.5rem;
+            right: 1.5rem;
+        }
+    }
+    .active-menu {
+        animation: expand 0.4s ease-out forwards;
+    }
+    .inactive-menu {
+        animation: contract 0.4s ease-out forwards;
+    }
+
+    @keyframes stretchToNext {
+        0% {
+            transform: scaleY(1);
+        }
+        100% {
+            transform: scaleY(2);
+        }
+    }
+
+    @keyframes stretchToLast {
+        0% {
+            transform: scaleY(1);
+        }
+        100% {
+            transform: scaleY(2);
+        }
+    }
+
+    #progress-bar.stretchingNext {
+        transform-origin: top;
+        transition: top 0.3s ease-out;
+        animation: stretchToNext 0.3s ease-out;
+    }
+
+    #progress-bar.stretchingLast {
+        transform-origin: bottom;
+        transition: bottom 0.3s ease-out;
+        animation: stretchToLast 0.3s ease-out;
+    }
+    /* @keyframes foldDown {
+        0% {
+            transform: rotateX(-90deg);
+            transform-origin: top;
+            opacity: 0;
+        }
+        100% {
+            transform: rotateX(0);
+            transform-origin: top;
+            opacity: 1;
+        }
+    }
+
+    .animate-foldDown {
+        animation: foldDown 1s ease-out forwards;
+    }
+
+    .initial-fold {
+        transform: rotateX(-90deg);
+        transform-origin: top;
+        opacity: 0;
+    }
+    .perspective-1000 {
+        perspective: 500px;
+    } */
+}

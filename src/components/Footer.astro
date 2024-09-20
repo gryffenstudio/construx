@@ -1,0 +1,77 @@
+---
+import logo from '../assets/svg/Logo_White.svg?raw';
+import Icon from './Icon.astro';
+---
+
+<footer class='mt-auto bg-brand-green-primary py-5 text-white lg:pt-16'>
+    <div class='container'>
+        <div class='flex flex-col space-y-6 lg:flex-row lg:justify-between lg:space-y-0'>
+            <div class='lg:w-full'>
+                <a
+                    href='/'
+                    class='mb-6 flex h-[50px] w-[70px] flex-col items-center text-xs font-bold uppercase lg:h-[70px] lg:w-[90px]'
+                    ><Icon icon={logo} />Construx</a
+                >
+                <p class='leading-snug'>
+                    We help specialize in your perfect home blah blah blah blah blah
+                </p>
+            </div>
+            <div class='flex lg:w-1/2 lg:justify-between'>
+                <div class='flex flex-col space-y-4'>
+                    <a href='/team' class='cursor-pointer uppercase leading-snug hover:opacity-30'
+                        >team</a
+                    >
+                    <a
+                        href='/services'
+                        class='cursor-pointer uppercase leading-snug hover:opacity-30'>services</a
+                    >
+                    <a
+                        href='/portfolio'
+                        class='cursor-pointer uppercase leading-snug hover:opacity-30'>portfolio</a
+                    >
+                </div>
+                <div class='mx-auto flex flex-col space-y-4 lg:mx-0'>
+                    <a href='/blog' class='cursor-pointer uppercase leading-snug hover:opacity-30'
+                        >blog</a
+                    >
+                    <a
+                        href='/contact-us'
+                        class='cursor-pointer uppercase leading-snug hover:opacity-30'>contact</a
+                    >
+                    <a
+                        href='/careers'
+                        class='cursor-pointer uppercase leading-snug hover:opacity-30'>careers</a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class='mt-11 flex flex-col'>
+            <span class='text-2xl font-bold leading-snug'>Follow</span>
+            <div class='mt-7 space-x-3'>
+                <a
+                    href='https://www.facebook.com'
+                    class='icon-[ri--facebook-fill] h-[30px] w-[30px] cursor-pointer hover:opacity-30'
+                    aria-label='Facebook Link'></a>
+                <a
+                    href='https://www.instagram.com'
+                    class='icon-[ri--instagram-line] h-[30px] w-[30px] cursor-pointer hover:opacity-30'
+                    aria-label='Instagram Link'></a>
+            </div>
+        </div>
+        <div class='mt-8 flex flex-col lg:mt-11 lg:flex-row lg:justify-between'>
+            <div class='order-2 mt-4 flex lg:order-none lg:mt-0 lg:w-[40%] lg:justify-between'>
+                <span class='text-sm leading-relaxed'>© 2024 Construx LLC</span>
+                <a href='/terms-and-conditions' class='ml-4 text-sm capitalize leading-relaxed'
+                    >Terms & Conditions</a
+                >
+            </div>
+            <div class='order-1 flex lg:order-none lg:w-[40%] lg:justify-between'>
+                <a href='/cookie-policy' class='text-sm capitalize leading-relaxed'>cookie policy</a
+                >
+                <a href='/privacy-policy' class='ml-4 text-sm capitalize leading-relaxed'
+                    >privacy policy</a
+                >
+            </div>
+        </div>
+    </div>
+</footer>

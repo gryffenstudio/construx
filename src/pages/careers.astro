@@ -1,0 +1,134 @@
+---
+import Hero from '../components/Hero.astro';
+import Layout from '../layouts/Layout.astro';
+import heroImageSM from '../assets/images/Home-Hero-SM.png';
+import heroImage from '../assets/images/home-hero.png';
+import CareerBenefits from '../components/CareerBenefits.astro';
+import careersBenefits from '../assets/svg/careers-benefits.svg?raw';
+import Carousel, { type CarouselImage, type ReviewSlide } from '../components/Carousel';
+import { getImage } from 'astro:assets';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const reviews = await getCollection('reviews', ({ data }: any) => {
+    return data.featured;
+});
+
+const positions: CollectionEntry<'positions'>[] = await getCollection('positions');
+
+const filteredReviews = reviews.slice(0, 5);
+
+let reviewCarouselSlides: ReviewSlide[] = [];
+
+for (let i = 0; i < filteredReviews.length; i++) {
+    let carouselReviewSlide: ReviewSlide = {} as ReviewSlide;
+    let carouselReviewImageObject: CarouselImage = {} as CarouselImage;
+    let reviewMobileImage = await getImage({
+        src: filteredReviews[i].data.reviewerImage.image,
+        height: 125,
+        width: 130,
+        format: 'webp',
+        quality: 'high',
+    });
+
+    carouselReviewImageObject.image = reviewMobileImage;
+    carouselReviewImageObject.alt = filteredReviews[0].data.reviewerImage.alt;
+
+    carouselReviewSlide.reviewerName = filteredReviews[i].data.reviewerName;
+    carouselReviewSlide.reviewerLocation = filteredReviews[i].data.reviewerLocation;
+    carouselReviewSlide.reviewerImage = carouselReviewImageObject;
+    carouselReviewSlide.review = filteredReviews[i].data.review;
+
+    reviewCarouselSlides.push(carouselReviewSlide);
+}
+---
+
+<Layout title='Careers - Construx' description='Join Construx' robots={false}>
+    <Hero
+        h1Text='join us'
+        description='Explore our career opportunities'
+        heroImages={[heroImageSM, heroImage]}
+    />
+    <main>
+        <section class='container py-16'>
+            <h2 class='mb-8'>why you should join us</h2>
+            <div
+                class='grid place-items-center gap-x-10 gap-y-10 md:grid-cols-2 md:gap-y-16 lg:grid-cols-3'
+            >
+                {
+                    [...Array(6)].map(() => (
+                        <CareerBenefits
+                            title='Work from Home'
+                            description='Value the ability to work anywhere? We too. Once a week, you choose where you from.'
+                            icon={careersBenefits}
+                        />
+                    ))
+                }
+            </div>
+        </section>
+        <section class='bg-brand-gray py-16'>
+            <div class='container'>
+                <h2 class='text-brand-green-primary lg:text-start'>Reviews From Our Employees</h2>
+                <div class='mt-8'>
+                    <Carousel
+                        client:load
+                        reviewSlides={reviewCarouselSlides}
+                        paginationClass='.swiper-custom-pagination-reviews'
+                    />
+                </div>
+            </div>
+        </section>
+        <section class='container py-16'>
+            <h2 class=''>our open positions</h2>
+            <p class='mb-8 text-center text-xl leading-[30px]'>
+                It doesn’t matter where you’re coming from, Lorem ipsum dolor.
+            </p>
+            <div
+                class='mx-auto mb-8 max-w-[725px] rounded-md border border-[#f3f5f4] px-3 py-5 shadow'
+            >
+                {
+                    positions.map((position, index) => (
+                        <div>
+                            <div class='flex flex-col space-y-2 px-7 md:flex-row md:items-center md:justify-between md:space-y-0'>
+                                <div>
+                                    <h3 class='-mb-2 text-xl font-semibold capitalize leading-loose'>
+                                        {position.data.positionName}
+                                    </h3>
+                                    <p class='font-semibold capitalize leading-loose text-brand-gray-light'>
+                                        {position.data.positionLocation}
+                                    </p>
+                                </div>
+                                <a href='#'>
+                                    <button class='inline-flex h-10 w-[100px] items-center justify-center rounded-lg bg-brand-green-secondary font-medium tracking-tight'>
+                                        Apply
+                                        <span class='icon-[carbon--arrow-right] ml-2 h-5 w-5 place-self-center text-black' />
+                                    </button>
+                                </a>
+                            </div>
+                            {index !== positions.length - 1 && (
+                                <span class='mb-2 mt-2 block h-px w-full bg-[#9d9d9d] md:mt-4' />
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+            <div class='flex items-center justify-center space-x-4'>
+                <h3 class='text-xl font-bold leading-loose'>Nothing for you here?</h3>
+
+                <a
+                    href='#'
+                    class='mb-1 inline-flex cursor-pointer items-center justify-center font-bold text-brand-green-primary hover:opacity-50'
+                >
+                    <span class='relative'>
+                        Self-application
+                        <span
+                            class='icon-[carbon--arrow-right] mb-1 ml-1 inline-flex h-5 w-5 align-middle font-bold text-brand-green-primary'
+                        ></span>
+                        <span
+                            class='absolute bottom-1.5 left-0 -mb-2 h-px w-[105%] transform bg-brand-green-primary'
+                        ></span>
+                    </span>
+                </a>
+            </div>
+        </section>
+    </main>
+</Layout>

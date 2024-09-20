@@ -1,0 +1,80 @@
+---
+import Hero from '../../components/Hero.astro';
+import heroImageSM from '../../assets/images/Home-Hero-SM.png';
+import heroImage from '../../assets/images/home-hero.png';
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../../components/ProjectCard.astro';
+import type { CollectionEntry } from 'astro:content';
+import { IndustryType, ServiceType } from '../../content/config';
+
+const projects: CollectionEntry<'projects'>[] = await getCollection('projects');
+
+const projectServices: ServiceType[] = Object.values(ServiceType);
+const projectIndustries: IndustryType[] = Object.values(IndustryType);
+---
+
+<Layout title='Services - Construx' description='Build with Construx' robots={false}>
+    <Hero
+        h1Text='our portfolio'
+        description='Explore our successful projects'
+        heroImages={[heroImageSM, heroImage]}
+    />
+    <main>
+        <section
+            class='container flex flex-col items-center space-y-8 pb-8 pt-16 lg:flex-row lg:justify-between lg:space-y-0'
+        >
+            <div class='relative w-full max-w-[327px] lg:w-[28%] lg:max-w-[28%]'>
+                <select id='serviceSelect' class='portfolio-dropdown peer'>
+                    <option value='' selected>Service:</option>
+                    {
+                        projectServices.map((service) => {
+                            return (
+                                <option class='capitalize' value={service}>
+                                    {service}
+                                </option>
+                            );
+                        })
+                    }
+                </select>
+                <span
+                    class='arrow-icon icon-[simple-line-icons--arrow-down] pointer-events-none absolute right-[18px] top-[14.5px] z-10 h-5 w-5 transform duration-300 peer-focus:rotate-180 lg:right-[18px] lg:top-[14.5px]'
+                ></span>
+            </div>
+            <div class='relative w-full max-w-[327px] lg:w-[28%] lg:max-w-[28%]'>
+                <select id='industrySelect' class='portfolio-dropdown peer'>
+                    <option value='' selected>Industry:</option>
+                    {
+                        projectIndustries.map((industry) => {
+                            return (
+                                <option class='capitalize' value={industry}>
+                                    {industry}
+                                </option>
+                            );
+                        })
+                    }
+                </select>
+                <span
+                    class='arrow-icon icon-[simple-line-icons--arrow-down] pointer-events-none absolute right-[18px] top-[14.5px] z-10 h-5 w-5 transform duration-300 peer-focus:rotate-180 lg:right-[18px] lg:top-[14.5px]'
+                ></span>
+            </div>
+
+            <input
+                type='text'
+                id='findByNameInput'
+                placeholder='Find by name'
+                class='w-full max-w-[327px] appearance-none rounded-none border-b border-black pb-4 text-xl placeholder:text-xl placeholder:text-black lg:w-[28%] lg:max-w-[28%]'
+            />
+        </section>
+        <section class='container pb-16'>
+            <div class='grid place-items-center gap-y-7 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-14'>
+                {
+                    projects.map((project) => {
+                        return <ProjectCard projectData={project.data} />;
+                    })
+                }
+            </div>
+        </section>
+    </main>
+    <script src='../../scripts/portfolio.ts'></script>
+</Layout>

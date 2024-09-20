@@ -1,0 +1,47 @@
+{
+    "projectName": "Residential Project 3",
+    "projectSummaryParagraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "projectSummaryPoints": [
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet",
+        "Lorem ipsum dolor sit amet"
+    ],
+    "clientName": "Residential Client 2",
+    "slug": "residential-project-2",
+    "service": "residential",
+    "industry": "education",
+    "location": "Loveland, CO",
+    "completionDate": "2024-07-01",
+    "members": ["matt-lutton"],
+    "featured": true,
+    "cardImageMobile": {
+        "image": "../../assets/images/residential-project-1-SM.png",
+        "alt": "Residential Project 3 Card Image Mobile"
+    },
+    "cardImageDesktop": {
+        "image": "../../assets/images/residential-project-1.png",
+        "alt": "Residential Project 3 Card Image Desktop"
+    },
+    "projectImagesMobile": [
+        {
+            "image": "../../assets/images/Home-Hero-SM.png",
+            "alt": "Residential Project 3 Image Mobile 2"
+        },
+        {
+            "image": "../../assets/images/residential-project-1-SM.png",
+            "alt": "Residential Project 3 Image Mobile 1"
+        }
+    ],
+    "projectImagesDesktop": [
+        {
+            "image": "../../assets/images/home-hero.png",
+            "alt": "Residential Project 3 Image Desktop 1"
+        },
+        {
+            "image": "../../assets/images/residential-project-1.png",
+            "alt": "Residential Project 3 Image Desktop 1"
+        }
+    ]
+}

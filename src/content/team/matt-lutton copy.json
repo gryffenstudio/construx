@@ -1,0 +1,25 @@
+{
+    "name": "Matt Lutton",
+    "role": "CEO and President",
+    "slug": "matt-lutton-1",
+    "location": "Denver, CO",
+    "phoneNumber": "0000000000",
+    "email": "matt.lutton@construx.com",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la  magna aliqua.",
+    "cardImageMobile": {
+        "image": "../../assets/images/Matt-Lutton-Card-Image.png",
+        "alt": "Matt Lutton Card Image Mobile"
+    },
+    "cardImageDesktop": {
+        "image": "../../assets/images/Matt-Lutton-Card-Image.png",
+        "alt": "Matt Lutton Card Image Desktop"
+    },
+    "profileImageMobile": {
+        "image": "../../assets/images/Matt-Lutton-Profile-Image-SM.png",
+        "alt": "Matt Lutton Card Image Mobile"
+    },
+    "profileImageDesktop": {
+        "image": "../../assets/images/Matt-Lutton-Profile-Image.png",
+        "alt": "Matt Lutton Card Image Desktop"
+    }
+}

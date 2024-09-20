@@ -1,0 +1,19 @@
+---
+import BlogPostGrid from '../../components/BlogPostGrid';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title='Blog - Construx' description='Build with Construx' robots={false}>
+    <header class='container flex flex-col items-center justify-center py-16'>
+        <h1 class='capitalize leading-[60px]'>latest news</h1>
+        <p class='mt-4 text-center lg:w-[35%]'>
+            Fill out the form below to get in touch with our experienced team of contractors,
+            painters, architects and more.
+        </p>
+    </header>
+    <main>
+        <section class='container pb-16'>
+            <BlogPostGrid client:load />
+        </section>
+    </main>
+</Layout>

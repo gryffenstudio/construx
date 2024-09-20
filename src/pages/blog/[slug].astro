@@ -1,0 +1,186 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPost, getPosts, urlFor, getRelatedPosts, type Post } from '../../utils/sanity';
+import type { StructuredDataInput } from '../../utils/structuredData';
+import siteData from '../../data/siteData.json';
+import { formatDate } from '../../utils/dateUtils';
+import CustomImage from '../../components/CustomImage.astro';
+import PortableText from '../../components/PortableText.astro';
+import Carousel, { type CarouselImage, type ProjectSlide } from '../../components/Carousel';
+import { getImage } from 'astro:assets';
+import BlogPostCard from '../../components/BlogPostCard';
+
+export async function getStaticPaths() {
+    const posts = await getPosts();
+    return posts.map((post: Post) => ({
+        params: { slug: post.slug.current },
+        props: { posts },
+    }));
+}
+
+const { slug } = Astro.params;
+
+const post = await getPost(slug);
+
+const relatedPosts = await getRelatedPosts(post.category.title);
+let relatedPostCarouselSlides: ProjectSlide[] = [];
+
+for (let i = 0; i < relatedPosts.length; i++) {
+    let carouselProjectSlide: ProjectSlide = {} as ProjectSlide;
+    let carouselMobileProjectImageObject: CarouselImage = {} as CarouselImage;
+    let carouselDesktopProjectImageObject: CarouselImage = {} as CarouselImage;
+
+    let featuredProjectMobileImage = await getImage({
+        src: urlFor(relatedPosts[i].cardImageMobile)?.url(),
+        height: 330,
+        width: 327,
+        format: 'webp',
+        quality: 'high',
+    });
+
+    carouselMobileProjectImageObject.image = featuredProjectMobileImage;
+    carouselMobileProjectImageObject.alt = `${relatedPosts[i].title} related post carousel image`;
+
+    let featuredProjectDesktopImage = await getImage({
+        src: urlFor(relatedPosts[i].cardImageDesktop)?.url(),
+        height: 330,
+        width: 360,
+        format: 'webp',
+        quality: 'high',
+    });
+
+    carouselDesktopProjectImageObject.image = featuredProjectDesktopImage;
+    carouselMobileProjectImageObject.alt = `${relatedPosts[i].title} related post carousel image`;
+
+    carouselProjectSlide.mobileImage = carouselMobileProjectImageObject;
+    carouselProjectSlide.desktopImage = carouselDesktopProjectImageObject;
+    carouselProjectSlide.href = `/blog/${relatedPosts[i].slug.current}`;
+
+    relatedPostCarouselSlides.push(carouselProjectSlide);
+}
+
+const dateFormat: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    formatMatcher: 'basic',
+};
+
+const structuredData: StructuredDataInput[] = [
+    {
+        type: 'BlogPosting',
+        data: {
+            url: Astro.url,
+            headline: post.title,
+            description: post.pageDescription,
+            datePublished: post.publishedAt,
+            dateModified: post.updatedAt,
+            author: {
+                '@type': 'Person',
+                name: post.author.name,
+            },
+            publisher: {
+                '@id': siteData.organizationId,
+            },
+            mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': Astro.url,
+            },
+            image: urlFor(post.cardImageMobile)?.url() ?? '',
+        },
+    } satisfies StructuredDataInput,
+    {
+        type: 'Organization',
+        data: {
+            '@id': siteData.organizationId,
+            name: siteData.organizationName,
+            url: siteData.url,
+            logo: siteData.logo.src,
+        },
+    } satisfies StructuredDataInput,
+    {
+        type: 'BreadcrumbList',
+        data: {
+            id: `${siteData.url}/blog/${post.category.slug.current}/#breadcrumb`,
+            items: [
+                { name: 'Home', url: siteData.url },
+                { name: 'Blog', url: `${siteData.url}/blog` },
+                { name: post.title, url: Astro.url },
+            ],
+        },
+    } satisfies StructuredDataInput,
+];
+---
+
+<Layout
+    title={post.title}
+    description={post.pageDescription}
+    robots={false}
+    image={{ src: urlFor(post.cardImageDesktop)?.url(), alt: `${post.title} image` }}
+    structuredData={structuredData}
+>
+    <header class='container pb-8 pt-16 lg:px-[263px]'>
+        <h1 class='mb-6 text-4xl capitalize leading-10 lg:text-7xl lg:leading-[80px]'>
+            {post.title}
+        </h1>
+        <div class='flex space-x-10 font-medium capitalize leading-[35px]'>
+            <p>{formatDate(post.updatedAt, dateFormat)}</p>
+            <p>develop</p>
+        </div>
+    </header>
+    <article>
+        <section class='pb-16'>
+            <div class='relative h-[453px] w-full'>
+                <CustomImage
+                    mobileImgUrl={urlFor(post.heroImageMobile).format('webp').url()}
+                    desktopImgUrl={urlFor(post.heroImageDesktop)?.format('webp').url()}
+                    imageSizes={[
+                        [375, 453],
+                        [1440, 453],
+                    ]}
+                    alt={`Hero Image`}
+                    imgClassList='absolute inset-0 block h-full w-full object-cover object-center z-0'
+                    loading='eager'
+                />
+            </div>
+            <div class='mt-6 flex items-center justify-center space-x-4'>
+                <div class='flex h-[40px] w-[40px] items-center justify-center rounded-full'>
+                    <a>
+                        <img
+                            src={urlFor(post.author.image).format('webp').url()}
+                            alt={`${post.author.name} image`}
+                            height={56}
+                            width={56}
+                            class='rounded-full'
+                        />
+                    </a>
+                </div>
+                <div class='flex flex-col space-y-1'>
+                    <p class='font-bold capitalize leading-snug text-brand-gray-dark'>
+                        {post.author.name}
+                    </p>
+                    <p class='text-sm font-semibold capitalize leading-snug text-brand-gray-dark'>
+                        {post.author.name}
+                    </p>
+                </div>
+            </div>
+        </section>
+        <main class='container pb-16 lg:px-[263px]'>
+            <PortableText portableText={post.body} />
+        </main>
+        <div class='container'>
+            <span class='mb-8 mt-16 block h-px bg-[#9d9d9d] lg:px-[263px]'></span>
+        </div>
+        <section class='container pb-16'>
+            <h2 class='text-center lg:-mb-8'>Related articles</h2>
+            <Carousel
+                client:load
+                projectSlides={relatedPostCarouselSlides}
+                paginationClass='.swiper-custom-pagination-related-project-images'
+            />
+            <div class='hidden space-x-8 lg:flex'>
+                {relatedPosts.map((project: Post) => <BlogPostCard post={project} />)}
+            </div>
+        </section>
+    </article>
+</Layout>
