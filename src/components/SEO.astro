@@ -60,4 +60,4 @@ const jsonLD = jsonLDGenerator(
 {robots ?? <meta name='robots' content='noindex, nofollow' />}
 
 <!-- JSON LD -->
-<script type='application/ld+json' set:html={jsonLD} />
+<script is:inline type='application/ld+json' set:html={jsonLD} />

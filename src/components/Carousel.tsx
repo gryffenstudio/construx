@@ -10,7 +10,6 @@ import 'swiper/css/effect-fade';
 // import required modules
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import type { PaginationOptions, SwiperOptions } from 'swiper/types';
-import { useEffect, useState } from 'react';
 import { useMediaQuery } from '../utils/reactHooks';
 
 export interface CarouselImage {

@@ -26,11 +26,14 @@ export default defineConfig({
         robotsTxt(),
         sitemap(),
         sanity({
-            projectId: 'bpernsxq',
+            projectId: '0jedqyuq',
             dataset: 'production',
             useCdn: false,
             apiVersion: '2024-05-14',
             studioBasePath: '/sanity-studio-admin',
+            stega: {
+                studioUrl: '/sanity-studio-admin',
+            },
         }),
     ],
     image: {
