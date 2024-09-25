@@ -12,6 +12,8 @@ import BlogPostCard from '../../components/BlogPostCard';
 
 
 export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
+// For local testing since prerender mut be static
+// export const prerender = false;
 
 export async function getStaticPaths() {
     const posts = await getPosts();
