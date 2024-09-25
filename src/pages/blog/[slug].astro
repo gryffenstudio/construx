@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getPost, getPosts, urlFor, getRelatedPosts, type Post } from '../../utils/sanity';
-import type { StructuredDataInput } from '../../utils/structuredData';
+import type { StructuredDataInput } from '../../utils/StructuredData';
 import siteData from '../../data/siteData.json';
 import { formatDate } from '../../utils/dateUtils';
 import CustomImage from '../../components/CustomImage.astro';
@@ -115,7 +115,6 @@ const structuredData: StructuredDataInput[] = [
 <Layout
     title={post.title}
     description={post.pageDescription}
-    robots={false}
     image={{ src: urlFor(post.cardImageDesktop)?.url(), alt: `${post.title} image` }}
     structuredData={structuredData}
 >

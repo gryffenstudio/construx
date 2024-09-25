@@ -1,4 +1,4 @@
-import type { StructuredData, StructuredDataInput } from './structuredData';
+import type { StructuredData, StructuredDataInput } from './StructuredData';
 
 export default function jsonLoadGenerator(dataArray: StructuredDataInput[]): string {
     const graph: StructuredData[] = dataArray.map(({ type, data }) => {

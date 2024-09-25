@@ -7,12 +7,13 @@
         "width": "43",
         "height": "51"
     },
-    "image":{
+    "image": {
         "src": "https://construx-template.netlify.app/hero-home.png",
         "alt": "Construx Home Page Image",
         "width": "1200",
         "height": "600"
     },
+    "twitterHandle": null,
     "organizationName": "Construx",
     "url": "https://construx-template.netlify.app",
     "websiteId": "https://construx-template.netlify.app/#website",

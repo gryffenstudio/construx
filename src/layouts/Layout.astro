@@ -3,18 +3,18 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
 import '../styles/global.css';
-import type { StructuredDataInput } from '../utils/structuredData';
+import type { StructuredDataInput } from '../utils/StructuredData';
 import { VisualEditing } from '@sanity/astro/visual-editing';
 
 interface Props {
     title: string;
     description: string;
-    robots: boolean;
+    noRobots?: boolean;
     image?: any;
     structuredData?: StructuredDataInput[];
 }
 
-let { title, description, robots, image, structuredData } = Astro.props;
+let { title, description, noRobots, image, structuredData } = Astro.props;
 
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
 ---
@@ -47,7 +47,7 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
             url={Astro.url}
             image={image}
             structuredData={structuredData}
-            robots={robots}
+            noRobots={noRobots ?? visualEditingEnabled}
         />
         <title>{title}</title>
     </head>
