@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getPosts } from '../../utils/sanity';
 
 const posts = await getPosts();
-export const prerender = false;
+export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED !== 'true';
 ---
 
 <Layout title='Blog - Construx' description='Build with Construx'>
