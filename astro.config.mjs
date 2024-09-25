@@ -29,7 +29,7 @@ export default defineConfig({
             projectId: '0jedqyuq',
             dataset: 'production',
             useCdn: false,
-            apiVersion: '2024-05-14',
+            apiVersion: '2024-09-14',
             studioBasePath: '/sanity-studio-admin',
             stega: {
                 studioUrl: '/sanity-studio-admin',

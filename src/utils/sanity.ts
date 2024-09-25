@@ -31,7 +31,7 @@ export const resolve: PresentationPluginOptions["resolve"] = {
             title: doc?.title || "Untitled",
             href: `/blog/${doc?.slug}`,
           },
-          { title: "Blog Posts", href: location.origin },
+          { title: "Construx Template", href: location.origin },
         ],
       }),
     }),

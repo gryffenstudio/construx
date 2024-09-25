@@ -1,7 +1,9 @@
 ---
 import BlogPostGrid from '../../components/BlogPostGrid';
 import Layout from '../../layouts/Layout.astro';
+import { getPosts } from '../../utils/sanity';
 
+const posts = await getPosts();
 ---
 
 <Layout title='Blog - Construx' description='Build with Construx' robots={false}>
@@ -14,7 +16,7 @@ import Layout from '../../layouts/Layout.astro';
     </header>
     <main>
         <section class='container pb-16'>
-            <BlogPostGrid client:load />
+            <BlogPostGrid posts={posts} totalPosts={posts.length} client:load />
         </section>
     </main>
 </Layout>
