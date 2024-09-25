@@ -12,12 +12,8 @@ import { resolve } from './src/utils/sanity';
 // const projectId = env.PUBLIC_SANITY_PROJECT_ID;
 // const dataset = env.PUBLIC_SANITY_DATASET;
 
-const projectId =
-    process.env.PUBLIC_SANITY_PROJECT_ID ??
-    import.meta.env.PUBLIC_SANITY_PROJECT_ID
-const dataset =
-    process.env.PUBLIC_SANITY_DATASET ??
-    import.meta.env.PUBLIC_SANITY_DATASET
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET;
 
 export default defineConfig({
     name: 'default',
