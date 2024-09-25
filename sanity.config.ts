@@ -12,8 +12,8 @@ import { resolve } from './src/utils/sanity';
 // const projectId = env.VITE_SANITY_PROJECT_ID;
 // const dataset = env.VITE_SANITY_DATASET;
 
-const projectId = process.env.VITE_SANITY_PROJECT_ID!;
-const dataset = process.env.VITE_SANITY_DATASET!;
+const projectId = process.env.PUBLIC_SANITY_PROJECT_ID!;
+const dataset = process.env.PUBLIC_SANITY_DATASET!;
 
 export default defineConfig({
     name: 'default',

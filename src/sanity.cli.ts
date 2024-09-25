@@ -7,8 +7,8 @@ import { defineCliConfig } from 'sanity/cli';
 // const projectId = env.VITE_SANITY_PROJECT_ID;
 // const dataset = env.VITE_SANITY_DATASET;
 
-const projectId = process.env.VITE_SANITY_PROJECT_ID!;
-const dataset = process.env.VITE_SANITY_DATASET!;
+const projectId = process.env.PUBLIC_SANITY_PROJECT_ID!;
+const dataset = process.env.PUBLIC_SANITY_DATASET!;
 
 // const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
 // const dataset = import.meta.env.PUBLIC_SANITY_DATASET;

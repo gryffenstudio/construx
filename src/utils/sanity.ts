@@ -8,8 +8,8 @@ import type { QueryParams } from 'sanity';
 import { defineLocations } from 'sanity/presentation';
 import type { PresentationPluginOptions } from 'sanity/presentation';
 
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
-const token = import.meta.env.PUBLIC_SANITY_API_VIEWER_TOKEN;
+const visualEditingEnabled = process.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
+const token = process.env.PUBLIC_SANITY_API_VIEWER_TOKEN;
 
 const imageBuilder = imageUrlBuilder(sanityClient);
 
@@ -17,25 +17,25 @@ export function urlFor(source: SanityAsset) {
     return imageBuilder.image(source);
 }
 
-export const resolve: PresentationPluginOptions["resolve"] = {
-  locations: {
-    // Add more locations for other post types
-    post: defineLocations({
-      select: {
-        title: "title",
-        slug: "slug.current",
-      },
-      resolve: (doc) => ({
-        locations: [
-          {
-            title: doc?.title || "Untitled",
-            href: `/blog/${doc?.slug}`,
-          },
-          { title: "Construx Template", href: location.origin },
-        ],
-      }),
-    }),
-  },
+export const resolve: PresentationPluginOptions['resolve'] = {
+    locations: {
+        // Add more locations for other post types
+        post: defineLocations({
+            select: {
+                title: 'title',
+                slug: 'slug.current',
+            },
+            resolve: (doc) => ({
+                locations: [
+                    {
+                        title: doc?.title || 'Untitled',
+                        href: `/blog/${doc?.slug}`,
+                    },
+                    { title: 'Construx Template', href: location.origin },
+                ],
+            }),
+        }),
+    },
 };
 
 export async function loadQuery<QueryResponse>({

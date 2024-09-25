@@ -10,8 +10,8 @@ import netlify from '@astrojs/netlify';
 
 // const env = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
-const projectId = process.env.VITE_SANITY_PROJECT_ID;
-const dataset = process.env.VITE_SANITY_DATASET;
+const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.PUBLIC_SANITY_DATASET;
 
 // const projectId =
 //     process.env.PUBLIC_SANITY_PROJECT_ID ??
