@@ -7,6 +7,8 @@ import robotsTxt from 'astro-robots-txt';
 import sanity from '@sanity/astro';
 import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 
 const env = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
@@ -24,7 +26,7 @@ const dataset = env.PUBLIC_SANITY_DATASET;
 export default defineConfig({
     site: 'https://construx-template.netlify.app',
     adapter: netlify(),
-    output: 'server',
+    output: 'hybrid',
     devToolbar: {
         enabled: false,
     },
@@ -56,9 +58,22 @@ export default defineConfig({
         prefetchAll: true,
     },
     vite: {
-        build: {
-            rollupOptions: {
-                external: ['fsevents'],
+        resolve: {
+            alias: {
+                // Polyfill Node.js core modules for Vite
+                path: 'path-browserify',
+            },
+        },
+        optimizeDeps: {
+            esbuildOptions: {
+                // Polyfill Node.js globals like "process" and "Buffer"
+                plugins: [
+                    NodeGlobalsPolyfillPlugin({
+                        process: true,
+                        buffer: true,
+                    }),
+                    NodeModulesPolyfillPlugin(),
+                ],
             },
         },
     },
