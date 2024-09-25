@@ -24,7 +24,7 @@ const dataset = env.PUBLIC_SANITY_DATASET;
 export default defineConfig({
     site: 'https://construx-template.netlify.app',
     adapter: netlify(),
-    output: 'hybrid',
+    output: 'server',
     devToolbar: {
         enabled: false,
     },
