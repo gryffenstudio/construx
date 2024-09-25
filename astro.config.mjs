@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { loadEnv } from 'vite';
+// import { loadEnv } from 'vite';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import partytown from '@astrojs/partytown';
@@ -7,13 +7,11 @@ import robotsTxt from 'astro-robots-txt';
 import sanity from '@sanity/astro';
 import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
-import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
-import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 
-const env = loadEnv(process.env.NODE_ENV, process.cwd(), '');
+// const env = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
-const projectId = env.PUBLIC_SANITY_PROJECT_ID;
-const dataset = env.PUBLIC_SANITY_DATASET;
+const projectId = process.env.VITE_SANITY_PROJECT_ID;
+const dataset = process.env.VITE_SANITY_DATASET;
 
 // const projectId =
 //     process.env.PUBLIC_SANITY_PROJECT_ID ??
@@ -56,25 +54,5 @@ export default defineConfig({
     },
     prefetch: {
         prefetchAll: true,
-    },
-    vite: {
-        resolve: {
-            alias: {
-                // Polyfill Node.js core modules for Vite
-                path: 'path-browserify',
-            },
-        },
-        optimizeDeps: {
-            esbuildOptions: {
-                // Polyfill Node.js globals like "process" and "Buffer"
-                plugins: [
-                    NodeGlobalsPolyfillPlugin({
-                        process: true,
-                        buffer: true,
-                    }),
-                    NodeModulesPolyfillPlugin(),
-                ],
-            },
-        },
     },
 });
