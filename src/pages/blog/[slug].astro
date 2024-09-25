@@ -10,21 +10,16 @@ import Carousel, { type CarouselImage, type ProjectSlide } from '../../component
 import { getImage } from 'astro:assets';
 import BlogPostCard from '../../components/BlogPostCard';
 
+
 export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED !== 'true';
 
-let getStaticPathsFn;
-
-if (import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED !== 'true') {
-    getStaticPathsFn = async function getStaticPaths() {
-        const posts = await getPosts();
-        return posts.map((post: Post) => ({
-            params: { slug: post.slug.current },
-            props: { posts },
-        }));
-    };
+export async function getStaticPaths() {
+    const posts = await getPosts();
+    return posts.map((post: Post) => ({
+        params: { slug: post.slug.current },
+        props: { posts },
+    }));
 }
-
-export { getStaticPathsFn as getStaticPaths };
 
 const { slug } = Astro.params;
 
