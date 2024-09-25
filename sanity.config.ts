@@ -8,8 +8,8 @@ import { resolve } from './src/utils/sanity';
 export default defineConfig({
     name: 'default',
     title: 'construx',
-    projectId: '0jedqyuq',
-    dataset: 'production',
+    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+    dataset: import.meta.env.PUBLIC_SANITY_DATASET,
     plugins: [
         structureTool(),
         visionTool(),
