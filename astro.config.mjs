@@ -55,4 +55,11 @@ export default defineConfig({
     prefetch: {
         prefetchAll: true,
     },
+    vite: {
+        build: {
+            rollupOptions: {
+                external: ['fsevents'],
+            },
+        },
+    },
 });
