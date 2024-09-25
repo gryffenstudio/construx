@@ -2,19 +2,26 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { presentationTool } from 'sanity/presentation';
+import { loadEnv } from 'vite';
 
 import { schemaTypes } from './schema';
 import { resolve } from './src/utils/sanity';
+
+const env = loadEnv(process.env.NODE_ENV!, process.cwd(), '');
+
+const projectId = process.env.PUBLIC_SANITY_PROJECT_ID || env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.PUBLIC_SANITY_DATASET || env.PUBLIC_SANITY_DATASET;
+
 export default defineConfig({
     name: 'default',
     title: 'construx',
-    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+    projectId,
+    dataset,
     plugins: [
         structureTool(),
         visionTool(),
         presentationTool({
-            previewUrl: location.origin,
+            previewUrl: '/preview',
             resolve,
         }),
     ],
