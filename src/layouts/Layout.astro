@@ -16,7 +16,7 @@ interface Props {
 
 let { title, description, noRobots, image, structuredData } = Astro.props;
 
-const visualEditingEnabled = process.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
 ---
 
 <!doctype html>

@@ -8,8 +8,8 @@ import type { QueryParams } from 'sanity';
 import { defineLocations } from 'sanity/presentation';
 import type { PresentationPluginOptions } from 'sanity/presentation';
 
-const visualEditingEnabled = process.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
-const token = process.env.PUBLIC_SANITY_API_VIEWER_TOKEN;
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
+const token = import.meta.env.PUBLIC_SANITY_API_VIEWER_TOKEN;
 
 const imageBuilder = imageUrlBuilder(sanityClient);
 
