@@ -11,7 +11,7 @@ import { getImage } from 'astro:assets';
 import BlogPostCard from '../../components/BlogPostCard';
 
 
-export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED !== 'true';
+export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
 
 export async function getStaticPaths() {
     const posts = await getPosts();
