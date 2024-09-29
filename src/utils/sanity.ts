@@ -121,8 +121,8 @@ export async function getPost(slug: string): Promise<Post> {
     return data;
 }
 
-export async function getRelatedPosts(category: string): Promise<Post[]> {
-    const query = groq`*[_type == "post" && defined(slug.current) && category->title == $category] | order(updatedAt desc) [0...3] {
+export async function getRelatedPosts(slug:string, category: string): Promise<Post[]> {
+    const query = groq`*[_type == "post" && defined(slug.current) && category->title == $category && slug.current != $slug] | order(updatedAt desc) [0...3] {
             title,
             pageDescription,
             cardDescription,
@@ -138,7 +138,7 @@ export async function getRelatedPosts(category: string): Promise<Post[]> {
             body,
         }`;
 
-    const { data } = await loadQuery<Post[]>({ query, params: { category } });
+    const { data } = await loadQuery<Post[]>({ query, params: { category, slug } });
 
     return data;
 }

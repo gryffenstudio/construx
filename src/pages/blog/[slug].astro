@@ -10,9 +10,8 @@ import Carousel, { type CarouselImage, type ProjectSlide } from '../../component
 import { getImage } from 'astro:assets';
 import BlogPostCard from '../../components/BlogPostCard';
 
-
 export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
-// For local testing since prerender mut be static
+// For local testing since prerender must be static
 // export const prerender = false;
 
 export async function getStaticPaths() {
@@ -27,7 +26,7 @@ const { slug } = Astro.params;
 
 const post = await getPost(slug);
 
-const relatedPosts = await getRelatedPosts(post.category.title);
+const relatedPosts = await getRelatedPosts(post.slug.current, post.category.title);
 let relatedPostCarouselSlides: ProjectSlide[] = [];
 
 for (let i = 0; i < relatedPosts.length; i++) {
