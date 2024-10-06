@@ -11,9 +11,8 @@ import BlogPostCard from '../../components/BlogPostCard';
 import { getPost, getPosts, getRelatedPosts } from '../../../sanity/lib/queries';
 import type { Post } from '../../../sanity/lib/types';
 import { urlFor } from '../../../sanity/lib/utils';
-import { visualEditingEnabled } from '../../../sanity/lib/api';
 
-export const prerender = visualEditingEnabled;
+export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
 // For local testing since prerender must be static
 // export const prerender = false;
 

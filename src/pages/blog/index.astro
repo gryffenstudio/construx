@@ -1,11 +1,10 @@
 ---
-import { visualEditingEnabled } from '../../../sanity/lib/api';
 import { getPosts } from '../../../sanity/lib/queries';
 import BlogPostGrid from '../../components/BlogPostGrid';
 import Layout from '../../layouts/Layout.astro';
 
 const posts = await getPosts();
-export const prerender = visualEditingEnabled;
+export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
 // For local testing since prerender must be static
 // export const prerender = false;
 ---
