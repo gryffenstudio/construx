@@ -1,4 +1,5 @@
-import { urlFor, type Post } from '../utils/sanity';
+import type { Post } from '../../sanity/lib/types';
+import { urlFor } from '../../sanity/lib/utils';
 import { useMediaQuery } from '../utils/reactHooks';
 
 function BlogPostCard({ post }: { post: Post }) {

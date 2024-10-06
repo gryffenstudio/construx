@@ -1,13 +1,12 @@
 ---
+import { getPosts } from '../../../sanity/lib/queries';
 import BlogPostGrid from '../../components/BlogPostGrid';
 import Layout from '../../layouts/Layout.astro';
-import { getPosts } from '../../utils/sanity';
 
 const posts = await getPosts();
-export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
+// export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
 // For local testing since prerender must be static
-// export const prerender = false;
-
+export const prerender = false;
 ---
 
 <Layout title='Blog - Construx' description='Build with Construx'>

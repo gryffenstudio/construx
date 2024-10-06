@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { type Post } from '../utils/sanity';
 import BlogPostCard from './BlogPostCard';
+import type { Post } from '../../sanity/lib/types';
 
 const POSTS_PER_PAGE = 3;
 
