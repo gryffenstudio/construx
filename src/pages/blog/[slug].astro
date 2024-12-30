@@ -12,7 +12,7 @@ import { getPost, getPosts, getRelatedPosts } from '../../../sanity/lib/queries'
 import type { Post } from '../../../sanity/lib/types';
 import { urlFor } from '../../../sanity/lib/utils';
 
-export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
+export const prerender = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'false';
 
 export async function getStaticPaths() {
     const posts = await getPosts();
