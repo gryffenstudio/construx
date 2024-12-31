@@ -24,6 +24,7 @@ if (!(env.PUBLIC_SANITY_PROJECT_ID && env.PUBLIC_SANITY_DATASET)) {
 export default defineConfig({
     site: 'https://construx-template.netlify.app',
     adapter: netlify(),
+    output: 'hybrid',
     devToolbar: {
         enabled: false,
     },
